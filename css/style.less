@@ -1,0 +1,19 @@
+@import "variables.less";
+@import "mixins.less";
+
+body {
+	font-family: @text;
+	.font-size(1.4);
+
+	&*{.boxsizing;}
+}
+
+h1, h2, h3, h4{
+	font-family: @headline;
+}
+h3.subtitle{font-family: @text;}
+
+.wrapper{
+	max-width: 960px;
+	margin: 0 auto;
+}
