@@ -2,10 +2,12 @@
 @import "mixins.less";
 
 body {
+	background: @light;
 	font-family: @text;
 	.font-size(1.4);
+	color: @dark;
 
-	&*{.boxsizing;}
+	*{.boxsizing;}
 }
 
 h1, h2, h3, h4{
