@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Backbone Playground</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!-- pure css framework for basic styling  -->
+        <link rel="stylesheet" href="css/pure.min.css">
+        <!-- custom webfonts -->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700|Oswald' rel='stylesheet' type='text/css'>
+        <!-- page styling -->
+        <link rel="stylesheet" href="css/style.css">
+        <style>
+
+            #todo-list input.edit {
+              display: none; /* Hides input box*/
+            }
+            #todo-list .editing label {
+              display: none; /* Hides label text when .editing*/
+            }
+            #todo-list .editing input.edit {
+              display: inline; /* Shows input text box when .editing*/
+            }
+
+        </style>
+    </head>
+    <body>
+
+        <div class="pure-g wrapper">
+            <div class="pure-u-1">
+                <!-- Add your site or application content here -->
+                <h1>Backbone Playground</h1>
+                <h3 class="subtitle">Just a personal coding space for learning Backbone.js.</h3>
+
+                <hr>
+                
+                <h2>App Quiz Example</h2>
+                <section id="body">
+                  <button id="insert-button" class="pure-button pure-button-primary">Insert another question</button>
+                  <button id="get-answer" class="pure-button pure-button-success">Get current answer</button>
+                  <table id="content" class="pure-table">
+                    <thead>
+                      <th>#</th>
+                      <th>Number</th>
+                      <th>Answer</th>
+                      <th>Actions</th>
+                      <tbody></tbody>
+                    </thead>
+                  </table>
+                </section>
+
+            </div>
+        </div>
+
+        <!-- template -->
+        <script type="text/template" id="answer-template">
+            <td><input class="toggle" type="radio" name="answer" <%- isAnswer ? 'checked' : '' %>></td>
+            <td><strong><%= number %></strong></td>
+            <td>
+              <label class="answer-text"><%- title %></label>
+              <input type="text" class="answer-edit" value="<%- title %>">
+            </td>
+            <td>
+              <button class="edit pure-button pure-button-secondary pure-button-small">edit</button>
+              <button class="save pure-button pure-button-success pure-button-small">save</button>
+              <button class="destroy pure-button pure-button-error pure-button-small">remove</button>
+            </td>
+        </script>
+
+        <!-- javascript at the footer of the document -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/json2.js"></script>
+        <script src="js/underscore-min.js"></script>
+        <script src="js/backbone-min.js"></script>
+        <script src="js/backbone.localStorage-min.js"></script>
+        <script src="js/main2.js"></script>
+    </body>
+</html>
