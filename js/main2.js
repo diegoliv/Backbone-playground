@@ -16,11 +16,15 @@ $(function(){
 
   app.AnswerList = Backbone.Collection.extend({
     model: app.Answer,
-    localStorage: new Store("backbone-answers")
+    localStorage: new Store("backbone-answers"),
   });
 
   // instance of the Collection
   app.answerList = new app.AnswerList();
+
+  // app.answerList.on('add change', function(){
+  //   console.log(JSON.stringify(app.answerList));
+  // });
 
   app.AnswerView = Backbone.View.extend({
     tagName: 'tr',
@@ -80,8 +84,14 @@ $(function(){
       $(this.el).find('.answer-text').show();
     },
     toggleAnswer: function(e){
+      var all = app.answerList.where({isAnswer:true});
+
+      _.each(all, function(item){
+        item.set({isAnswer:false});
+      });
+
       if($(e.target).val() == 'on'){
-        console.log($(e.target).val());
+        // console.log($(e.target).val());
         this.model.set({ isAnswer: true });
       } else {
         this.model.set({ isAnswer: false });
@@ -123,11 +133,49 @@ $(function(){
       _.each(theAnswer, function(item){
         answr = item.toJSON();
       });
-      console.log(answr.title);
+      alert(answr.title);
     }
 
   });
 
   app.appView = new app.AppView();
+
+
+  // view para dar output na collection
+  app.Output = Backbone.View.extend({
+    el: '#output',
+
+    initialize: function(){
+      // this.model.bind('collectionChange', this.render);
+      _.bindAll(this,'render');
+      app.answerList.bind('add change destroy', this.render);
+      this.render();
+    },
+    render: function(){
+      var string = JSON.stringify(app.answerList, null, 2);
+      this.$el.html('<pre><code>'+ string + '</code></pre>');
+    }
+
+  });
+
+  app.output = new app.Output();
+
+  // // view para renderizar o quiz
+  // app.Quiz = Backbone.View.extend({
+  //   el: '#quiz',
+  //   template: _.template($('#quiz-template').html()),
+
+  //   initialize: function(){
+  //     app.answerList.bind('add change destroy', this.render);
+  //     this.render();
+  //   },
+  //   render: function(){
+  //     this.$el.html(this.template({ answers: app.answerList.toJSON()}));
+  //     return this;
+  //   }
+
+  // });
+
+  // app.quiz = new app.Quiz();
 
 });

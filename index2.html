@@ -35,12 +35,16 @@
                 <h1>Backbone Playground</h1>
                 <h3 class="subtitle">Just a personal coding space for learning Backbone.js.</h3>
 
-                <hr>
-                
+                <hr>              
+            </div>
+
+            <div class="pure-u-2-3">    
                 <h2>App Quiz Example</h2>
                 <section id="body">
+                <p>
                   <button id="insert-button" class="pure-button pure-button-primary">Insert another question</button>
                   <button id="get-answer" class="pure-button pure-button-success">Get current answer</button>
+                </p>
                   <table id="content" class="pure-table">
                     <thead>
                       <th>#</th>
@@ -51,7 +55,16 @@
                     </thead>
                   </table>
                 </section>
+            </div>
 
+            <div class="pure-u-1-3">
+              <h3>Output:</h3>
+              <section id="output"></section>
+            </div>
+
+            <div class="pure-u-1">
+              <h2>Final render of the app:</h2>
+              <section id="quiz"></section>
             </div>
         </div>
 
@@ -68,6 +81,18 @@
               <button class="save pure-button pure-button-success pure-button-small">save</button>
               <button class="destroy pure-button pure-button-error pure-button-small">remove</button>
             </td>
+        </script>
+
+        <!-- template for the quiz -->
+        <script type="text/template" id="quiz-template">
+          <% _.each(answers, function(answer) { %>
+            <li>
+              <label class="answer-text">
+                <input class="toggle" type="radio" name="answer" <%- answer.isAnswer ? 'checked' : '' %>>
+                <strong><%= answer.number %></strong> <%- answer.title %>
+              </label>
+            </li>
+          <% }); %>
         </script>
 
         <!-- javascript at the footer of the document -->
